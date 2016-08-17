@@ -59,6 +59,17 @@
 			</div>
 		</nav>
 		<h1 class="text-center">{{message}}</h1>
+		<ul class="list-group">
+			<li class="list-group-item" v-for="todo in todos">
+				{{todo.name}}
+			</li>
+			<li class="list-group-item" v-for="todo in todos">
+				{{todo.sex}}
+			</li>
+			<li class="list-group-item" v-for="todo in todos">
+				{{todo.favor}}
+			</li>
+		</ul>
 	</div>
 		
 		<!-- jQuery -->
@@ -70,7 +81,10 @@
 			new Vue({
 				el:"#app",
 				data:{
-					message:"hello world!"
+					message:"hello world!",
+					todos: [
+					      { name: 'RLWB', sex: 'male',favor: 'Build Something Awesome' },
+					    ]
 				}
 			})
 		</script>
