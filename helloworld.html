@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Title Page</title>
+
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+
+		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
+			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+		<div class="container" id="app">
+			<h1>
+				{{ msg }}
+			</h1>
+			<div id="app-2">
+				{{ message }}
+			</div>
+			<h2 v-bind:title="message">goood</h2>
+			<h4 v-if="see">You can see me!</h4>
+			<ul>
+				<li v-for="item in items">
+					{{ item[i] + item.ask }}
+				</li>
+			</ul>
+		</div>
+			
+		<!-- jQuery -->
+		<script src="bower_components/vue/dist/vue.js"></script>
+		<script src="bower_components/jquery/dist/jquery.min.js"></script>
+		<!-- Bootstrap JavaScript -->
+		<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+		<script>
+			new Vue({
+				el: '#app',
+				data: {
+					msg: "Hello World!",
+					message: 'You loaded this page on ' + new Date(),
+					see: true,
+					items: [
+						{ ask: "hello"},
+						{ ask: "hi"},
+						{ ask: "hallo"}
+					]
+				}
+			});
+		</script>
+	</body>
+</html>

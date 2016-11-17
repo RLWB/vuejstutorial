@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    </head>
+    <body>
+        <div id="example">
+            <p>{{ data.a }}</p>
+            <input id="inpt" type="text" class="form-control" v-model="data.a">
+        </div>
+        <div id="map" style="width:500px;height:320px"></div>
+    </body>
+    <script src="http://api.map.baidu.com/api?v=2.0&ak=bsvWQQZ5BZOrZasRspRinEzV6mGLGMtG"></script>
+    <script src="bower_components/vue/dist/vue.min.js"></script>
+    <script>
+        var data = { a: 1 }
+        var vm = new Vue({
+        el: '#example',
+        data: data
+        })
+        vm.$data === data // -> true
+        vm.$el === document.getElementById('example') // -> true
+        // $watch 是一个实例方法
+        vm.$watch('a', function (newVal, oldVal) {
+        // 这个回调将在 `vm.a`  改变后调用
+        console.log("new: "+newVal+" old: "+oldVal)
+        
+        })
+        // //localStorage
+        // var setLocal = localStorage.inpt =  document.getElementById("inpt").value;
+        // var getLocal = localStorage.inpt;
+        var latitude,longitude;
+        
+        navigator.geolocation.getCurrentPosition(updateLocation);
+        var map = new BMap.Map("map");          // 创建地图实例  
+        var point = new BMap.Point(latitude, longitude);  // 创建点坐标  
+        map.centerAndZoom(point, 10); 
+            
+        function updateLocation(position) { 
+            latitude = position.coords.latitude; 
+            longitude = position.coords.longitude;
+            console.log(latitude + longitude)
+        };
+
+            (function testSupport() { 
+                if (navigator.geolocation) { 
+                    alert("支持 HTML5 Geolocation。"); 
+                } else { 
+                alert("该浏览器不支持 HTML5 Geolocation ！建议升级浏览器或安装插件（如 Gears）。"); 
+                } 
+            })
+    </script>
+</html>
